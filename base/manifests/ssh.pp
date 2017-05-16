@@ -1,6 +1,18 @@
 class base::ssh {
+	
+	case $osfamily{
+		'RedHat': { $ssh_name = 'sshd'}
+		'Debian': { $ssh_name = 'ssh'}	
+	}
+	# selector method
+	# $ssh_name = $osfamily ? {
+	#'RedHat'  => 'sshd',
+	# 'Debian' => 'ssh',
+	#}
+	
+	
 	package{'openssh-package':
-		name   => 'openssh',
+		name   => 'openssh-server',
 		ensure => present,
 	}
 	
@@ -12,7 +24,8 @@ class base::ssh {
 		source   => 'puppet:///modules/base/sshd_config',
 	}	
 
-	service {'sshd':
+	service {'ssh-service':
+		name      => $ssh_name,
 		ensure    => running,
 		enable    => true,
 		subscribe => File['/etc/ssh/sshd_config'], 
