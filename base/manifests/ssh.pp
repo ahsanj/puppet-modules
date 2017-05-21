@@ -26,6 +26,7 @@ class base::ssh {
 
 	service {'ssh-service':
 		name      => $ssh_name,
+		alias    => 'ssh-service-name-2',
 		ensure    => running,
 		enable    => true,
 		subscribe => File['/etc/ssh/sshd_config'], 
