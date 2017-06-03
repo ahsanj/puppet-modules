@@ -3,4 +3,5 @@ class base::params {
                'RedHat': { $ssh_name = 'sshd'}
                'Debian': { $ssh_name = 'ssh'}
         }
+	$author = "puppet"
 }
