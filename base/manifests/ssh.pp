@@ -1,9 +1,10 @@
 class base::ssh {
-	
-	case $osfamily{
-		'RedHat': { $ssh_name = 'sshd'}
-		'Debian': { $ssh_name = 'ssh'}	
-	}
+	# moving to params.pp	
+	#case $osfamily{
+	#	'RedHat': { $ssh_name = 'sshd'}
+	#	'Debian': { $ssh_name = 'ssh'}	
+	#}
+
 	# selector method
 	# $ssh_name = $osfamily ? {
 	#'RedHat'  => 'sshd',
@@ -25,8 +26,8 @@ class base::ssh {
 	}	
 
 	service {'ssh-service':
-		name      => $ssh_name,
-		alias    => 'ssh-service-name-2',
+		name      => $base::params::ssh_name, # getting the value from params class 
+		#alias     => 'ssh-service-name-2',
 		ensure    => running,
 		enable    => true,
 		subscribe => File['/etc/ssh/sshd_config'], 
