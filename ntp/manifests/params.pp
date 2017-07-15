@@ -22,6 +22,6 @@ class ntp::params{
         
 
   }
-
+	$package_name = "ntp"
 
 }
