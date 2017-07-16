@@ -3,5 +3,8 @@ class base::if {
 	if $::hostname =~ /^ahsan-javed(\d)+/ {
 		notice("you have arrived at server $0 ")
  		# $0 will evaluate whenever gets from $::hostname
-	}	
+	}
+	else {
+                notice("no match")
+        }	
 }
